@@ -1,5 +1,4 @@
-capstone_detector
-=====
+# capstone_detector
 
 capstone_detector allows to detect the QR corner pattern called "capstones" in image :
 
@@ -13,11 +12,24 @@ capstone_detector has been made by :
 - removing everything unneeded to detect capstone
 - slightly reworking the public interface
 
-The resulting library allow to detect capstones on small embedded devices such as ESP32-cam.
+The resulting library allows to detect capstones on small embedded devices such as ESP32-cam.
 
+## How to build
 
-Copyright
----------
+```
+cd capstone_detector
+mkdir build
+cd build
+cmake ..
+make
+```
+
+## How to use
+
+TODO
+
+## Copyright
+
 Copyright (C) 2010-2012 Daniel Beer <<dlbeer@gmail.com>>
 
 Permission to use, copy, modify, and/or distribute this software for
