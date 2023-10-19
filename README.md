@@ -16,7 +16,7 @@ The resulting library allows to detect capstones on small embedded devices such 
 
 ## How to build
 
-```
+```bash
 cd capstone_detector
 mkdir build
 cd build
@@ -26,7 +26,7 @@ make
 
 ## How to use
 
-```
+```C++
 struct quirc *q = quirc_new();
 
 int capstone_count = quirc_detect_capstones(q, img, img_width, img_height);
@@ -36,6 +36,26 @@ for(int i=0;i<capstone_count;i++) {
 }
 
 quirc_destroy(q);
+```
+
+## How to test
+
+A minimal test is provided in `test` folder. It's built with the library and can be run with :
+
+```bash
+cd capstone_detector/build
+./capstone_detector_test
+```
+
+The test use the following (hardcoded) image and detect capstones :
+
+![capstone_img](test/capstone_img.jpg)
+
+It should output the capstone center :
+
+```
+capstone_count: 1
+capstone->center: 21, 23
 ```
 
 ## Copyright
