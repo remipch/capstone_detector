@@ -18,6 +18,10 @@
 #include <string.h>
 #include "quirc_internal.h"
 
+// Defined in identify.c, used here :
+uint8_t *quirc_begin(struct quirc *q, int *w, int *h);
+void quirc_end(struct quirc *q);
+
 struct quirc *quirc_new(void)
 {
 	struct quirc *q = malloc(sizeof(*q));
@@ -135,8 +139,16 @@ fail:
 	return -1;
 }
 
-int quirc_capstone_count(const struct quirc *q)
+int quirc_detect_capstones(struct quirc *q, const uint8_t * image, int w, int h)
 {
+    if(w != q->w || h != q->h) {
+        // Hard choice : crash explicitly if memory allocation fails
+        assert(quirc_resize(q, w, h)==0);
+    }
+
+    uint8_t *buffer = quirc_begin(q, NULL, NULL);
+    memcpy(buffer, image, w * h);
+    quirc_end(q);
 	return q->num_capstones;
 }
 

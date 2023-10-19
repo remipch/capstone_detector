@@ -47,25 +47,14 @@ struct quirc *quirc_new(void);
 /* Destroy a QR-code recognizer. */
 void quirc_destroy(struct quirc *q);
 
-/* Resize the QR-code recognizer. The size of an image must be
- * specified before codes can be analyzed.
+/* Detect all capstones in the given image
  *
- * This function returns 0 on success, or -1 if sufficient memory could
- * not be allocated.
- */
-int quirc_resize(struct quirc *q, int w, int h);
-
-/* These functions are used to process images for QR-code recognition.
- * quirc_begin() must first be called to obtain access to a buffer into
- * which the input image should be placed. Optionally, the current
- * width and height may be returned.
+ * Memory will be reallocated if given image dimensions
+ * are different from the last image dimensions
  *
- * After filling the buffer, quirc_end() should be called to process
- * the image for QR-code recognition. The locations and content of each
- * code may be obtained using accessor functions described below.
+ * return capstone_count
  */
-uint8_t *quirc_begin(struct quirc *q, int *w, int *h);
-void quirc_end(struct quirc *q);
+int quirc_detect_capstones(struct quirc *q, const uint8_t * image, int w, int h);
 
 /* This structure describes a location in the input image buffer. */
 struct quirc_point {
@@ -83,11 +72,6 @@ struct quirc_capstone {
 	struct quirc_point	center;
 	quirc_float_t		c[QUIRC_PERSPECTIVE_PARAMS];
 };
-
-/* Return the number of capstones identified in the last processed
- * image.
- */
-int quirc_capstone_count(const struct quirc *q);
 
 /* Get the capstone info specified by the given index. */
 const struct quirc_capstone * quirc_get_capstone(const struct quirc *q, int index);

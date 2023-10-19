@@ -1,9 +1,9 @@
 #include <stdint.h>
 
 /* Define image 'capstone_img' of size 48x48x1x1 and type 'uint8' */
-static const int CAPSTONE_IMG_WIDTH = 48;
-static const int CAPSTONE_IMG_HEIGHT = 48;
-static const uint8_t CAPSTONE_IMG[] = { 
+static const int IMG_WIDTH = 48;
+static const int IMG_HEIGHT = 48;
+static const uint8_t IMG[] = {
   226, 225, 224, 224, 225, 225, 224, 223, 229, 227, 224, 224, 225, 225, 223, 222,
   221, 222, 222, 222, 223, 225, 226, 224, 225, 224, 222, 220, 221, 222, 222, 220,
   217, 224, 221, 215, 217, 217, 216, 222, 232, 148, 53, 81, 85, 84, 75, 76,

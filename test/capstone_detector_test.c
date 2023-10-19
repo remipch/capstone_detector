@@ -9,14 +9,7 @@
 int main(int argc, char **argv) {
     struct quirc *q = quirc_new();
 
-    assert(quirc_resize(q, CAPSTONE_IMG_WIDTH, CAPSTONE_IMG_HEIGHT)==0);
-
-    uint8_t *buffer = quirc_begin(q, NULL, NULL);
-    memcpy(buffer, CAPSTONE_IMG, CAPSTONE_IMG_WIDTH * CAPSTONE_IMG_HEIGHT);
-    quirc_end(q);
-
-    int capstone_count = quirc_capstone_count(q);
-    printf("capstone_count: %i\n", capstone_count);
+    int capstone_count = quirc_detect_capstones(q,IMG,IMG_WIDTH,IMG_HEIGHT);
     assert(capstone_count==1);
 
     for(int i=0;i<capstone_count;i++) {

@@ -26,7 +26,17 @@ make
 
 ## How to use
 
-TODO
+```
+struct quirc *q = quirc_new();
+
+int capstone_count = quirc_detect_capstones(q, img, img_width, img_height);
+for(int i=0;i<capstone_count;i++) {
+    const struct quirc_capstone *capstone = quirc_get_capstone(q, i);
+    printf("capstone->center: %i, %i\n", capstone->center.x, capstone->center.y);
+}
+
+quirc_destroy(q);
+```
 
 ## Copyright
 
