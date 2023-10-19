@@ -26,7 +26,7 @@
 #include "quirc_internal.h"
 
 // This value is faster and gives better results than original otsu adaptative filter
-const uint8_t PIXEL_THRESHOLD = 50;
+const uint8_t PIXEL_THRESHOLD = 100;
 
 /************************************************************************
  * Linear algebra routines
