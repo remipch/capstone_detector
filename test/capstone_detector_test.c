@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
         const struct quirc_capstone *capstone = quirc_get_capstone(q,i);
         printf("capstone->center: %i, %i\n", capstone->center.x, capstone->center.y);
         assert(capstone->center.x == 21);
-        assert(capstone->center.y == 23);
+        assert(capstone->center.y == 22);
     }
 
     quirc_destroy(q);

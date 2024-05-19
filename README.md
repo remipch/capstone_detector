@@ -55,7 +55,7 @@ It should output the capstone center :
 
 ```
 capstone_count: 1
-capstone->center: 21, 23
+capstone->center: 21, 22
 ```
 
 ## Copyright
