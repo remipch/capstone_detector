@@ -485,7 +485,7 @@ static void finder_scan(struct quirc *q, unsigned int y)
 	}
 }
 
-static void pixels_setup(struct quirc *q)
+static void pixels_setup(struct quirc *q, uint8_t pixel_threshold)
 {
 	if (QUIRC_PIXEL_ALIAS_IMAGE) {
 		q->pixels = (quirc_pixel_t *)q->image;
@@ -496,7 +496,7 @@ static void pixels_setup(struct quirc *q)
 	int length = q->w * q->h;
 	while (length--) {
 		uint8_t value = *source++;
-		*dest++ = (value < PIXEL_THRESHOLD) ? QUIRC_PIXEL_BLACK : QUIRC_PIXEL_WHITE;
+		*dest++ = (value < pixel_threshold) ? QUIRC_PIXEL_BLACK : QUIRC_PIXEL_WHITE;
 	}
 }
 
@@ -513,9 +513,9 @@ uint8_t *quirc_begin(struct quirc *q, int *w, int *h)
 	return q->image;
 }
 
-void quirc_end(struct quirc *q)
+void quirc_end(struct quirc *q, uint8_t pixel_threshold)
 {
-	pixels_setup(q);
+	pixels_setup(q, pixel_threshold);
 
 	for (int i = 0; i < q->h; i++)
 		finder_scan(q, i);

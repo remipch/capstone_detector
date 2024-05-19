@@ -29,7 +29,7 @@ make
 ```C++
 struct quirc *q = quirc_new();
 
-int capstone_count = quirc_detect_capstones(q, img, img_width, img_height);
+int capstone_count = quirc_detect_capstones(q, img, img_width, img_height, pixel_threshold);
 for(int i=0;i<capstone_count;i++) {
     const struct quirc_capstone *capstone = quirc_get_capstone(q, i);
     printf("capstone->center: %i, %i\n", capstone->center.x, capstone->center.y);

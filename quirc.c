@@ -20,7 +20,7 @@
 
 // Defined in identify.c, used here :
 uint8_t *quirc_begin(struct quirc *q, int *w, int *h);
-void quirc_end(struct quirc *q);
+void quirc_end(struct quirc *q, uint8_t pixel_threshold);
 
 struct quirc *quirc_new(void)
 {
@@ -139,7 +139,7 @@ fail:
 	return -1;
 }
 
-int quirc_detect_capstones(struct quirc *q, const uint8_t * image, int w, int h)
+int quirc_detect_capstones(struct quirc *q, const uint8_t * image, int w, int h, uint8_t pixel_threshold)
 {
     if(w != q->w || h != q->h) {
         // Hard choice : crash explicitly if memory allocation fails
@@ -148,7 +148,7 @@ int quirc_detect_capstones(struct quirc *q, const uint8_t * image, int w, int h)
 
     uint8_t *buffer = quirc_begin(q, NULL, NULL);
     memcpy(buffer, image, w * h);
-    quirc_end(q);
+    quirc_end(q, pixel_threshold);
 	return q->num_capstones;
 }
 

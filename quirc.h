@@ -54,7 +54,7 @@ void quirc_destroy(struct quirc *q);
  *
  * return capstone_count
  */
-int quirc_detect_capstones(struct quirc *q, const uint8_t * image, int w, int h);
+int quirc_detect_capstones(struct quirc *q, const uint8_t * image, int w, int h, uint8_t pixel_threshold);
 
 /* This structure describes a location in the input image buffer. */
 struct quirc_point {
